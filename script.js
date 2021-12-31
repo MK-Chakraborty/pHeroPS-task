@@ -13,38 +13,41 @@ const publicData = [
 ];
 
 const vaxTrail = (dataset) => {
+  const sortedDataset = dataset.sort(
+    (a, b) => (a.age & 1) - (b.age & 1) || a.age - b.age
+  );
   const arrA = [];
   const arrB = [];
   const arrC = [];
   const arrD = [];
-  for (let data in dataset) {
+  for (let data in sortedDataset) {
     if (
-      dataset[data].temperature < 100 &&
-      dataset[data].age >= 20 &&
-      dataset[data].age <= 30
+      sortedDataset[data].temperature < 100 &&
+      sortedDataset[data].age >= 20 &&
+      sortedDataset[data].age <= 30
     ) {
-      arrA.push(dataset[data]);
+      arrA.push(sortedDataset[data]);
     } else if (
-      dataset[data].temperature < 100 &&
-      dataset[data].age >= 31 &&
-      dataset[data].age <= 40
+      sortedDataset[data].temperature < 100 &&
+      sortedDataset[data].age >= 31 &&
+      sortedDataset[data].age <= 40
     ) {
-      arrB.push(dataset[data]);
+      arrB.push(sortedDataset[data]);
     } else if (
-      dataset[data].temperature < 100 &&
-      dataset[data].age >= 41 &&
-      dataset[data].age <= 50
+      sortedDataset[data].temperature < 100 &&
+      sortedDataset[data].age >= 41 &&
+      sortedDataset[data].age <= 50
     ) {
-      arrC.push(dataset[data]);
+      arrC.push(sortedDataset[data]);
     } else {
-      arrD.push(dataset[data]);
+      arrD.push(sortedDataset[data]);
     }
   }
   return {
-    A: arrA.sort((a, b) => (a.age & 1) - (b.age & 1) || a.age - b.age),
-    B: arrB.sort((a, b) => (a.age & 1) - (b.age & 1) || a.age - b.age),
-    C: arrC.sort((a, b) => (a.age & 1) - (b.age & 1) || a.age - b.age),
-    D: arrD.sort((a, b) => (a.age & 1) - (b.age & 1) || a.age - b.age),
+    A: arrA,
+    B: arrB,
+    C: arrC,
+    D: arrD,
   };
 };
 
